@@ -65,12 +65,8 @@ void Game::initPet(){
 
 void Game::showStatus() const {
     std::cout << "\n=== TURA: " << turnCount << " ===\n";
-    std::cout << "Zwierzak: " << playerPet->getName()
-              << " (" << playerPet->getSpecies() << " - " << playerPet->getStage() << ")\n";
-    playerPet->drawFace();
-    std::cout << "Glod: " << playerPet->getHunger() << "/100 | "
-              << "Szczescie: " << playerPet->getHappiness() << "/100 | "
-              << "Energia: " << playerPet->getEnergy() << "/100\n";
+    std::cout << *playerPet << "\n"; // przeciazony operator << wypisuje wszystkie staty i czy jest chory
+    playerPet->drawFace();           // rysuje mordke zaleznie od humoru glodu i energii
     std::cout << "====================\n";
 }
 
@@ -81,10 +77,14 @@ void Game::showMenu() const {
     std::cout << "4. Pomin ture (czekaj)\n";
     std::cout << "5. Zapisz gre\n";
     std::cout << "6. Zagraj w kubki (mini gra)\n";
+    std::cout << "7. Poglaszcz\n";
+    std::cout << "8. Wykap / Posprzataj\n";
+    std::cout << "9. Podaj lekarstwo\n";
     std::cout << "0. Wyjdz z gry\n";
     std::cout << "Wybierz akcje: ";
 }
 void Game::triggerRandomEvent() {
+    turnsWithoutEvent++;
     int chance = rand() % 100; //losuje liczbe od 0 do 99
     if (turnsWithoutEvent >= 4) {
         chance = rand() %48;
@@ -156,14 +156,13 @@ void Game::playCupGame() {
 void Game::handleInput() {
     int choice;
     std::cin >> choice;
-    if (std::cin.fail()) { //pilnuje zeby byla wpisana cyfra a nie liczba
+    if (std::cin.fail()) { // pilnuje zeby byla wpisana liczba a nie tekst
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Wpisz liczbe od 0 do 4!\n";
+        std::cout << "Wpisz liczbe z menu!\n";
         return;
     }
 
-    
     switch (choice) {
         case 1: playerPet->feed(); break;
         case 2: playerPet->play(); break;
@@ -175,16 +174,21 @@ void Game::handleInput() {
                 playerPet->saveToFile(file);
                 std::cout << "Zapisano stan gry do save.txt!\n";
             }
-            return;// nie liczy tego jako tury
+            return; // nie liczy tego jako tury
         }
-        
         case 6: playCupGame(); break;
+        case 7:
+            *playerPet += 10; // przeciazony operator += dodaje +10 szczescia
+            std::cout << "Poglaskales " << playerPet->getName() << "! (+10 szczescia)\n";
+            break;
+        case 8: playerPet->clean(); break;
+        case 9: playerPet->heal(); break;
         case 0: isRunning = false; return;
         default: std::cout << "Nieznana opcja.\n"; return;
     }
 
     playerPet->makeSound();
-    playerPet->update();
+    ++(*playerPet); // przeciazony operator ++ (uplyw tury)
     triggerRandomEvent();
     turnCount++;
 }

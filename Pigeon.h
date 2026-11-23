@@ -36,6 +36,17 @@ public:
         clampStats();
         std::cout << name << " ukradl komus frytke i odlecial na latarnie!\n";
     }
+
+
+
+    //golab tapla sie w misce jak w kaluzy na rynku
+    void clean() override {
+        cleanliness = 100;
+        happiness += 10;
+        energy -= 5;
+        clampStats();
+        std::cout << name << " urzadzil sobie kapiel w misce z woda i napuszyl piora!\n";
+    }
 };
 
 #endif

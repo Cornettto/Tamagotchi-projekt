@@ -31,8 +31,20 @@ public:
         hunger += 1;
         happiness -= 1;
         energy -= 1;
+        ageTurns++;
+        updateHygieneAndHealth();
         clampStats();
         ageTurns++;
+    }
+
+
+
+    //zolwiowi czysci sie skorupe szczoteczka do zebow
+    void clean() override {
+        cleanliness = 100;
+        happiness += 10;
+        clampStats();
+        std::cout << name << " mial wypolerowana skorupe szczoteczka i swieci sie jak lustro!\n";
     }
 };
 

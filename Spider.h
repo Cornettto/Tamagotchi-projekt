@@ -33,8 +33,18 @@ public:
         hunger += 2;
         happiness -= 2;
         energy -= 2;
+        ageTurns++;
+        updateHygieneAndHealth();
         clampStats();
         ageTurns++;
+    }
+
+
+    void clean() override {
+        cleanliness = 100;
+        energy -= 5;
+        clampStats();
+        std::cout << name << " mial posprzatane w terrarium.\n";
     }
 };
 

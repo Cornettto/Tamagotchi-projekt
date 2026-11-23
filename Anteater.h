@@ -34,7 +34,19 @@ public:
         hunger += 7;
         happiness -= 4;
         energy -= 5;
+        ageTurns++;
+        updateHygieneAndHealth();
         clampStats();
+    }
+
+
+    //prysznic splukuje mu resztki mrowek z dlugiego nosa
+    void clean() override {
+        cleanliness = 100;
+        happiness += 5;
+        energy -= 10;
+        clampStats();
+        std::cout << name << " wzial prysznic i w koncu odkleil sobie mrowki od nosa!\n";
     }
 };
 

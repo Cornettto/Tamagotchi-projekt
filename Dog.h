@@ -23,6 +23,15 @@ public:
         happiness += 5; 
         clampStats();
     }
+
+
+    void clean() override {
+        cleanliness = 100;
+        happiness += 5;
+        energy -= 10;
+        clampStats();
+        std::cout << name << " otrzepal sie z wody na cale mieszkanie i jest szczesliwy!\n";
+    }
 };
 
 #endif 

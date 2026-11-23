@@ -38,6 +38,15 @@ public:
         clampStats();
         std::cout << name << " dryfuje w miejscu z otwartymi oczami (niby spi).\n";
     }
+
+
+    //u ryby sprzatanie to wymiana wody w akwarium i mycie filtra
+    void clean() override {
+        cleanliness = 100;
+        happiness += 15;
+        clampStats();
+        std::cout << name << " plywa w swiezej, czystej wodzie i robi babelki z radosci!\n";
+    }
 };
 
 #endif

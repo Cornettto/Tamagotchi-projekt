@@ -34,8 +34,21 @@ public:
         hunger += 8;
         happiness -= 5;
         energy -= 8;
+        ageTurns++;
+        updateHygieneAndHealth();
         clampStats();
         ageTurns++;
+    }
+
+
+    
+    // chomik kapie sie w specjalnym piasku i ma z tego mega frajde
+    void clean() override {
+        cleanliness = 100;
+        happiness += 15;
+        energy -= 5;
+        clampStats();
+        std::cout << name << " wytarzal sie w piasku kapielowym i blyszczy jak nowy!\n";
     }
 };
 

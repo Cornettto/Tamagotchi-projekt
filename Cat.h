@@ -33,7 +33,16 @@ public:
         hunger += 4;
         happiness -= 3;
         energy -= 2;
+        ageTurns++;
+        updateHygieneAndHealth();
         clampStats();
+    }
+    void clean() override {
+        cleanliness = 100;
+        happiness -= 20;
+        energy -= 15;
+        clampStats();
+        std::cout << name << " zostal wykapany, ale podrapal ci rece i jest obrazony (-20 szczescia)\n";
     }
 };
 

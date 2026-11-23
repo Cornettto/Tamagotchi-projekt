@@ -2,6 +2,7 @@
 #define PET_H
 #include <fstream>
 #include <string>
+#include <iostream>
 
 class Pet {
 protected:
@@ -13,6 +14,12 @@ protected:
     int ageTurns = 0; // ile tur zwierzak juz przezyl
     //  pilnujaca zakresu 0-100 
     void clampStats();
+
+    int cleanliness = 80; // czystosc 0-100
+    bool isSick = false;  // czy zwierzak jest chory
+
+    // ogarnia brud i szanse na chorobe w trakcie tury
+    void updateHygieneAndHealth();
 
 public:
     Pet(const std::string& petName);
@@ -26,8 +33,6 @@ public:
 
     // symulacja uplywu czasu (wywolywana co ture)
     virtual void update();
-
-    // to chb zle
     virtual void makeSound() const = 0;
     virtual std::string getSpecies() const = 0;
 
@@ -42,7 +47,20 @@ public:
     void saveToFile(std::ofstream& file) const;// zapis i odczyt statystyk z pliku
     void loadFromFile(std::ifstream& file);
     void drawFace() const; // rysuje mordke zwierzaka zaleznie od statystyk
+    virtual void clean(); // wirtualne bo kazdy zwierzak inaczej reaguje na kapiel
+    void heal();          // podanie lekarstwa na chorobe
+    //przeciazenie += daje bonus do szczescia np za poglaskanie
+    Pet& operator+=(int bonusHappiness);
 
+
+
+    //przeciazenie ++ symuluje uplyw 1 tury dla zwierzaka
+    Pet& operator++();
+
+
+    // przeciazenie << pozwala wypisac zwierzaka przez std::cout << *playerPet
+    friend std::ostream& operator<<(std::ostream& os, const Pet& pet);
 };
+
 
 #endif 

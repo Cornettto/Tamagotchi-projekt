@@ -38,6 +38,16 @@ public:
         clampStats();
         std::cout << name << " wygrzewa sie pod lampa grzewcza i kima z usmiechem.\n";
     }
+
+
+
+    //gekon zlizuje krople wody ze scianek po zraszaniu terrarium
+    void clean() override {
+        cleanliness = 100;
+        happiness += 10;
+        clampStats();
+        std::cout << name << " mial umyte terrarium i od razu zlizuje krople wody z szyby!\n";
+    }
 };
 
 #endif

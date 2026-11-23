@@ -36,6 +36,17 @@ public:
         clampStats();
         std::cout << name << " schowal sie caly do skorupy i odcial od swiata.\n";
     }
+
+
+
+    //slimak kocha wilgoc wiec prysznic ze spryskiwacza laduje mu energie
+    void clean() override {
+        cleanliness = 100;
+        energy += 10;
+        happiness += 5;
+        clampStats();
+        std::cout << name << " zostal spryskany woda i od razu wystawil czulki!\n";
+    }
 };
 
 #endif

@@ -36,6 +36,16 @@ public:
         clampStats();
         std::cout << name << " robi salta w powietrzu i kica po meblach!\n";
     }
+
+
+    //krolikow nie wrzuca sie do wody tylko wyczesuje futerko i sprzata kuwete
+    void clean() override {
+        cleanliness = 100;
+        happiness += 10;
+        energy -= 5;
+        clampStats();
+        std::cout << name << " zostal wyczesany szczotka i ma posprzatane w klatce!\n";
+    }
 };
 
 #endif

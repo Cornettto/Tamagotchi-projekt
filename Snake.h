@@ -40,8 +40,19 @@ public:
         hunger += 2;
         happiness -= 2;
         energy -= 3;
+        ageTurns++;
+        updateHygieneAndHealth();
         clampStats();
         ageTurns++;
+    }
+
+
+    //letnia kapiel pomaga wezowi zrzucic stara wylinke
+    void clean() override {
+        cleanliness = 100;
+        happiness += 10;
+        clampStats();
+        std::cout << name << " wykapal sie w letniej wodzie i zrzucil stara skore!\n";
     }
 };
 
