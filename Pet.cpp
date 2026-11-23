@@ -49,3 +49,11 @@ void Pet::update() {
     energy -= 5;
     clampStats();
 }
+
+
+void Pet::modifyStats(int dHunger, int dHappiness, int dEnergy){ //tez do losowego
+    hunger += dHunger;
+    happiness += dHappiness;
+    energy += dEnergy;
+    clampStats(); // od razu sprawdza zakres 0-100 i czy nie padl
+}

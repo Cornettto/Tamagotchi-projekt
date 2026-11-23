@@ -13,7 +13,7 @@ private:
     void showStatus() const;
     void showMenu() const;
     void handleInput();
-
+    void triggerRandomEvent(); // losowe zdarenia co ture zeby nie bylo boring
 public:
     Game();
     void run();

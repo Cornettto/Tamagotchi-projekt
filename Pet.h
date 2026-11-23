@@ -36,6 +36,7 @@ public:
     int getHappiness() const { return happiness; }
     int getEnergy() const { return energy; }
     bool checkIsAlive() const { return isAlive; }
+    void modifyStats(int dHunger, int dHappiness, int dEnergy);
 };
 
 #endif 

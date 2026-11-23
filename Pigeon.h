@@ -8,11 +8,11 @@ public:
     Pigeon(const std::string& petName) : Pet(petName) {}
 
     void makeSound() const override {
-        std::cout << name << ": Gruuu gruuu! *patrzy podejrzliwie*\n";
+        std::cout << name << ": Gruuu gruuu!\n";
     }
 
     std::string getSpecies() const override {
-        return "Golab";
+        return "Gołąb";
     }
 
     // golab zje wszystko z ziemi wiec jedzenie daje mu tez szczescie
