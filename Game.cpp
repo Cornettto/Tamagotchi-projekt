@@ -2,6 +2,7 @@
 #include "Dog.h"
 #include "Cat.h"
 #include "Spider.h"
+#include "Hamster.h"
 #include <iostream>
 #include <limits> //smietnik na czyszczenia blednego wejscia
 
@@ -16,6 +17,7 @@ void Game::initPet(){
     std::cout << "Wybierz zwierzaka:\n"
               << "1. Pies\n"
               << "2. Kot\n"
+              << "4. Chomik\n"
               << "3. Pajak\n"
               << "Wybor: ";
     std::cin >> choice;
@@ -31,6 +33,7 @@ void Game::initPet(){
 
     switch (choice){ // podmienione na switcha ten if bo jednak bedzie wiecj zwierzakow
         case 2:  playerPet = std::make_unique<Cat>(petName); break;
+        case 4:  playerPet = std::make_unique<Hamster>(petName); break;
         case 3:  playerPet = std::make_unique<Spider>(petName); break;
         default: playerPet = std::make_unique<Dog>(petName); break;//pies bedzie domyslnie
     }
