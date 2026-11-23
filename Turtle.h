@@ -12,11 +12,11 @@ public:
     }
 
     std::string getSpecies() const override {
-        return "Zolw";
+        return "Zółw";
     }
 
 
-    
+
     // zolw je wolno ale salata poprawia mu humor
     void feed() override {
         hunger -= 20;
