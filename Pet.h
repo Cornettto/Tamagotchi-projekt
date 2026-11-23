@@ -1,6 +1,6 @@
 #ifndef PET_H
 #define PET_H
-
+#include <fstream>
 #include <string>
 
 class Pet {
@@ -37,6 +37,9 @@ public:
     int getEnergy() const { return energy; }
     bool checkIsAlive() const { return isAlive; }
     void modifyStats(int dHunger, int dHappiness, int dEnergy);
+    
+    void saveToFile(std::ofstream& file) const;// zapis i odczyt statystyk z pliku
+    void loadFromFile(std::ifstream& file);
 };
 
 #endif 

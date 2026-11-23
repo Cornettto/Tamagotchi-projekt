@@ -12,7 +12,7 @@ public:
     }
 
     std::string getSpecies() const override {
-        return "Krolik";
+        return "Królik";
     }
 
     // krolik uwielbia marchewke wiec jedzenie podbija mu tez humor

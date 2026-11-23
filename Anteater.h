@@ -7,12 +7,13 @@ class Anteater : public Pet {
 public:
     Anteater(const std::string& petName) : Pet(petName) {}
 
+
     void makeSound() const override {
         std::cout << name << ": *siorbie dlugim jezykiem i weszy po podlodze*\n";
     }
 
     std::string getSpecies() const override {
-        return "Mrowkojad";
+        return "Mrówkojad";
     }
 
 

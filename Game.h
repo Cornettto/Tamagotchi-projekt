@@ -14,6 +14,7 @@ private:
     void showMenu() const;
     void handleInput();
     void triggerRandomEvent(); // losowe zdarenia co ture zeby nie bylo boring
+    int turnsWithoutEvent = 0; // licznik tur bez zadnego eventu
 public:
     Game();
     void run();

@@ -57,3 +57,17 @@ void Pet::modifyStats(int dHunger, int dHappiness, int dEnergy){ //tez do losowe
     energy += dEnergy;
     clampStats(); // od razu sprawdza zakres 0-100 i czy nie padl
 }
+
+
+void Pet::saveToFile(std::ofstream& file) const {
+    
+    file << getSpecies() << "\n"//zapisz gatunek imie i staty 
+         << name << "\n"
+         << hunger << " " << happiness << " " << energy << "\n";
+}
+
+
+void Pet::loadFromFile(std::ifstream& file) {
+    file >> hunger >> happiness >> energy;
+    clampStats();
+}

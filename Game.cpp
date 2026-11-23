@@ -13,7 +13,7 @@
 #include "Gecko.h"
 #include <iostream>
 #include <limits> //smietnik na czyszczenia blednego wejscia
-
+#include <fstream>
 Game::Game() : isRunning(true), turnCount(1) {
     initPet(); 
 }
@@ -24,15 +24,15 @@ void Game::initPet(){
     std::cout << "Wybierz zwierzaka:\n"
               << "1. Pies\n"
               << "2. Kot\n"
-              << "3. Pająk\n"
+              << "3. Pajak\n"
               << "4. Chomik\n"
-              << "5. Gołąb\n"
-              << "6. Wąż\n"
-              << "7. Ślimak\n"
-              << "8. Żółw\n"
+              << "5. Golab\n"
+              << "6. Waz\n"
+              << "7. Slimak\n"
+              << "8. Zolw\n"
               << "9. Ryba\n"
-              << "10. Królik\n"
-              << "11. Mrówkojad\n"
+              << "10. Krolik\n"
+              << "11. Mrowkojad\n"
               << "12. Gekon\n"
               << "Wybor: ";
     std::cin >> choice;
@@ -83,13 +83,20 @@ void Game::showMenu() const {
 }
 void Game::triggerRandomEvent() {
     int chance = rand() % 100; //losuje liczbe od 0 do 99
+    if (turnsWithoutEvent >= 4) {
+        chance = rand() %48;
+    }
 
-    if (chance < 10) {
-        // 10% szans na darmowe jedzenie
+    if (chance < 48) {
+        turnsWithoutEvent = 0; // reset licznika bo cos sie zadzialo
+    }
+
+    if (chance < 20) {
+        // 20% szans na darmowe jedzenie
         std::cout << "[LOSOWE] " << playerPet->getName() << " znalazl starego chrupka pod kanapa! (-15 glodu, +5 szczescia)\n";
         playerPet->modifyStats(-15, 5, 0);
     } 
-    else if (chance < 20) {
+    else if (chance < 30) {
         //10% szans na glupawke
         std::cout << "[LOSOWE] " << playerPet->getName() << " dostal naglej glupawki i biega w kolko! (+15 szczescia, -10 energii)\n";
         playerPet->modifyStats(0, 15, -10);
@@ -136,12 +143,21 @@ void Game::handleInput() {
         case 2: playerPet->play(); break;
         case 3: playerPet->sleep(); break;
         case 4: std::cout << "Czas plynie...\n"; break;
+        case 5: {
+            std::ofstream file("save.txt");
+            if (file.is_open()) {
+                playerPet->saveToFile(file);
+                std::cout << "Zapisano stan gry do save.txt!\n";
+            }
+            return;// nie liczy tego jako tury
+        }
         case 0: isRunning = false; return;
         default: std::cout << "Nieznana opcja.\n"; return;
     }
 
     playerPet->makeSound();
     playerPet->update();
+    triggerRandomEvent();
     turnCount++;
 }
 
