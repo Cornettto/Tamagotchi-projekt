@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Dog.h"
 #include "Cat.h"
+#include "Spider.h"
 #include <iostream>
 #include <limits> //smietnik na czyszczenia blednego wejscia
 
@@ -12,7 +13,11 @@ void Game::initPet(){
     int choice = 0;
     std::string petName;
 
-    std::cout << "Wybierz zwierzaka:\n1. Pies\n2. Kot\nWybor: ";
+    std::cout << "Wybierz zwierzaka:\n"
+              << "1. Pies\n"
+              << "2. Kot\n"
+              << "3. Pajak\n"
+              << "Wybor: ";
     std::cin >> choice;
 
     // zeby nie wywalalo petli jak wpisze litere zamiast cyfry
@@ -24,10 +29,10 @@ void Game::initPet(){
     std::cout << "Podaj imie dla zwierzaka: ";
     std::cin >> petName;
 
-    if (choice == 2) {
-        playerPet = std::make_unique<Cat>(petName);
-    } else {
-        playerPet = std::make_unique<Dog>(petName);
+    switch (choice){ // podmienione na switcha ten if bo jednak bedzie wiecj zwierzakow
+        case 2:  playerPet = std::make_unique<Cat>(petName); break;
+        case 3:  playerPet = std::make_unique<Spider>(petName); break;
+        default: playerPet = std::make_unique<Dog>(petName); break;//pies bedzie domyslnie
     }
 }
 
