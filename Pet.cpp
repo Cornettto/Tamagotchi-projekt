@@ -10,8 +10,8 @@ void Pet::clampStats() {
     happiness = std::clamp(happiness, 0, 100);
     energy = std::clamp(energy, 0, 100);
 
-    // warunek przegranej ale nie caly (to sie potem dokonczy)
-    if (hunger >= 100 || happiness <= 0) {
+    // warunek przegranej caly
+    if (hunger >= 100 || happiness <= 0 || energy <= 0) {
         isAlive = false;
     }
 }
