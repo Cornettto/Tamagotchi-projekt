@@ -10,13 +10,14 @@ protected:
     int happiness;   // 0 (smutny) - 100 (happy)
     int energy;      // 0 (niewyspany) - 100 (wyspany)
     bool isAlive;
-
+    int ageTurns = 0; // ile tur zwierzak juz przezyl
     //  pilnujaca zakresu 0-100 
     void clampStats();
 
 public:
     Pet(const std::string& petName);
     virtual ~Pet() = default;
+    std::string getStage() const; // zwraca etap zycia
 
     // interakcje 
     virtual void feed();
@@ -41,6 +42,7 @@ public:
     void saveToFile(std::ofstream& file) const;// zapis i odczyt statystyk z pliku
     void loadFromFile(std::ifstream& file);
     void drawFace() const; // rysuje mordke zwierzaka zaleznie od statystyk
+
 };
 
 #endif 

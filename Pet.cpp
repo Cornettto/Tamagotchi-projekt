@@ -43,11 +43,18 @@ void Pet::sleep() {
 }
 
 void Pet::update() {
-    // uplyw czasu na jedna turee
     hunger += 5;
     happiness -= 5;
     energy -= 5;
+    ageTurns++; // zwierzak starzeje sie o 1 ture
     clampStats();
+} 
+
+std::string Pet::getStage() const {
+    if (ageTurns < 5)  return "Maluch";
+    if (ageTurns < 12) return "Nastolatek";
+    if (ageTurns < 20) return "Dorosly";
+    return "Stary";
 }
 
 
@@ -60,6 +67,7 @@ void Pet::modifyStats(int dHunger, int dHappiness, int dEnergy){ //tez do losowe
 
 
 void Pet::saveToFile(std::ofstream& file) const {
+   
     
     file << getSpecies() << "\n"//zapisz gatunek imie i staty 
          << name << "\n"
