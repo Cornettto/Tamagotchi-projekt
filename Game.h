@@ -15,6 +15,7 @@ private:
     void handleInput();
     void triggerRandomEvent(); // losowe zdarenia co ture zeby nie bylo boring
     int turnsWithoutEvent = 0; // licznik tur bez zadnego eventu
+    void playCupGame(); // minigra w zgadywanie kubka
 public:
     Game();
     void run();

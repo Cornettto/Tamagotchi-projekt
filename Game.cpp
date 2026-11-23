@@ -79,6 +79,8 @@ void Game::showMenu() const {
     std::cout << "2. Pobaw sie\n";
     std::cout << "3. Poloz spac\n";
     std::cout << "4. Pomin ture (czekaj)\n";
+    std::cout << "5. Zapisz gre\n";
+    std::cout << "6. Zagraj w kubki (mini gra)\n";
     std::cout << "0. Wyjdz z gry\n";
     std::cout << "Wybierz akcje: ";
 }
@@ -125,6 +127,29 @@ void Game::triggerRandomEvent() {
     //od 48 do 99 (52% szans) nic sie nie dzieje zeby nie spamowalo co ture
 }
 
+void Game::playCupGame() {
+    int secretCup = (rand() % 3) + 1; // losuje kubek 1, 2 albo 3
+    int guess = 0;
+
+    std::cout << "\n[MINI GRA] Pod ktorym kubkiem (1, 2 lub 3) jest smaczek? ";
+    std::cin >> guess;
+
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Miales wpisac 1, 2 albo 3! Zwierzak sie pogubil.\n";
+        return;
+    }
+
+    if (guess == secretCup) {
+        std::cout << "TRAFIONY! " << playerPet->getName() << " zjadl smaczka i skacze z radosci! (-15 glodu, +25 szczescia, -10 energii)\n";
+        playerPet->modifyStats(-15, 25, -10);
+    } else {
+        std::cout << "PUDLO! Smaczek byl pod kubkiem nr " << secretCup << ". " << playerPet->getName() << " jest zawiedziony. (-10 szczescia, -10 energii)\n";
+        playerPet->modifyStats(0, -10, -10);
+    }
+}
+
 
 
 
@@ -152,6 +177,8 @@ void Game::handleInput() {
             }
             return;// nie liczy tego jako tury
         }
+        
+        case 6: playCupGame(); break;
         case 0: isRunning = false; return;
         default: std::cout << "Nieznana opcja.\n"; return;
     }

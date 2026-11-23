@@ -22,6 +22,7 @@ public:
             std::cout << name << " popatrzyl na ciebie z pogarda i poszedl sobie.\n";
             happiness -= 5;
             clampStats();
+            ageTurns++;
             return;
         }
         Pet::play(); // jak juz sie bawi to normalnie jak w bazowej

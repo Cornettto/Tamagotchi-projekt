@@ -32,6 +32,7 @@ public:
         happiness -= 1;
         energy -= 1;
         clampStats();
+        ageTurns++;
     }
 };
 
