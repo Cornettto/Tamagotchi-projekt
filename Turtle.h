@@ -12,7 +12,7 @@ public:
     }
 
     std::string getSpecies() const override {
-        return "Zółw";
+        return "Zolw";
     }
 
 

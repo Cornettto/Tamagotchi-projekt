@@ -12,7 +12,7 @@ public:
     }
 
     std::string getSpecies() const override {
-        return "Gołąb";
+        return "Golab";
     }
 
     // golab zje wszystko z ziemi wiec jedzenie daje mu tez szczescie

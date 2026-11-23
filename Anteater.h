@@ -13,7 +13,7 @@ public:
     }
 
     std::string getSpecies() const override {
-        return "Mrówkojad";
+        return "Mrowkojad";
     }
 
 

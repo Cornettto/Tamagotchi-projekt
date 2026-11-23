@@ -12,7 +12,7 @@ public:
     }
 
     std::string getSpecies() const override {
-        return "Wąż";
+        return "Wazs";
     }
 
     // waz je rzadko ale konkretnie wiec zbija duzo glodu ale zamula od trawienia

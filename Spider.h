@@ -18,7 +18,7 @@ public:
 
     // pajak ma wywalone w zabawe wiec malo mu daje szczescia
     void play() override {
-        if (energy < 10) {
+        if (energy < 10)  {
             std::cout << name << " siedzi w pajeczynie i nie ma sily.\n";
             return;
         }
