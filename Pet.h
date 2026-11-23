@@ -40,6 +40,7 @@ public:
     
     void saveToFile(std::ofstream& file) const;// zapis i odczyt statystyk z pliku
     void loadFromFile(std::ifstream& file);
+    void drawFace() const; // rysuje mordke zwierzaka zaleznie od statystyk
 };
 
 #endif 

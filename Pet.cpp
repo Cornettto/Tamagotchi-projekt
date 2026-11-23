@@ -71,3 +71,21 @@ void Pet::loadFromFile(std::ifstream& file) {
     file >> hunger >> happiness >> energy;
     clampStats();
 }
+
+
+//na wyswietklanie mordki
+void Pet::drawFace() const {
+    if (!isAlive) {
+        std::cout << "   ( x _ x )  <-- RIP\n";
+    } else if (hunger > 75) {
+        std::cout << "   ( O _ O )  <-- DAJ JESC!\n";
+    } else if (energy < 25) {
+        std::cout << "   ( - . - ) zZz  <-- PADAM\n";
+    } else if (happiness > 75) {
+        std::cout << "   ( ^ w ^ )  <-- ALE SUPER!\n";
+    } else if (happiness < 30) {
+        std::cout << "   ( ; _ ; )  <-- SMUTNO MI\n";
+    } else {
+        std::cout << "   ( o _ o )  <-- JEST GIT\n";
+    }
+}

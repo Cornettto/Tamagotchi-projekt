@@ -65,8 +65,9 @@ void Game::initPet(){
 
 void Game::showStatus() const {
     std::cout << "\n=== TURA: " << turnCount << " ===\n";
-    std::cout << "Zwierzak: " << playerPet->getName() 
+    std::cout << "Zwierzak: " << playerPet->getName()
               << " (" << playerPet->getSpecies() << ")\n";
+    playerPet->drawFace();
     std::cout << "Glod: " << playerPet->getHunger() << "/100 | "
               << "Szczescie: " << playerPet->getHappiness() << "/100 | "
               << "Energia: " << playerPet->getEnergy() << "/100\n";
